@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimaControl | Soluciones en Aire Acondicionado</title>
+    <style>
+        :root {
+            --primary: #005b96;
+            --secondary: #03396c;
+            --accent: #ff7b25;
+            --light: #f8f9fa;
+            --text: #212529;
+            --text-light: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+        
+        /* Header */
+        .main-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        /* Navigation */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 2rem;
+        }
+        
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e67321;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Common Card Styles */
+        .card-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-img-container {
+            height: 200px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .card-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+        
+        .card-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .card-desc {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            flex-grow: 1;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+        
+        /* Products Section */
+        .products {
+            background-color: #f1f8ff;
+            padding: 5rem 0;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .product-features li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: auto;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img-container {
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--primary);
+            color: white;
+            padding: 5rem 0;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-detail {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-detail h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        .main-footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .main-nav {
+                margin-top: 1rem;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+            }
+            
+            .main-nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">Clima<span>Control</span></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#products">Productos</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Expertos en Climatización Profesional</h1>
+            <p>Instalación, mantenimiento y reparación de sistemas de aire acondicionado residenciales e industriales</p>
+            <a href="#contact" class="btn">Solicitar Presupuesto</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="card-container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Instalación de aire acondicionado" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Instalación Profesional</h3>
+                        <p class="card-desc">Instalamos sistemas de aire acondicionado de todas las marcas con garantía de calidad y eficiencia energética. Nuestros técnicos certificados garantizan una instalación perfecta.</p>
+                        <a href="#contact" class="btn">Más información</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mantenimiento de aire acondicionado" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Mantenimiento Preventivo</h3>
+                        <p class="card-desc">Programas de mantenimiento periódico para optimizar el rendimiento y prolongar la vida útil de tu equipo. Evita fallos costosos con nuestro servicio profesional.</p>
+                        <a href="#contact" class="btn">Más información</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Reparación de aire acondicionado" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Reparación Rápida</h3>
+                        <p class="card-desc">Servicio técnico especializado para resolver cualquier falla en tu sistema de climatización. Disponibilidad 24/7 para emergencias con respuesta inmediata.</p>
+                        <a href="#contact" class="btn">Más información</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <div class="card-container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aire acondicionado split" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Sistema Split Inverter</h3>
+                        <ul class="product-features">
+                            <li>Eficiencia energética A+++</li>
+                            <li>Tecnología inverter</li>
+                            <li>Control por WiFi</li>
+                            <li>Funcionamiento silencioso</li>
+                        </ul>
+                        <p class="product-price">Desde $899</p>
+                        <a href="#contact" class="btn">Consultar</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aire acondicionado portátil" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Aire Portátil</h3>
+                        <ul class="product-features">
+                            <li>Fácil instalación</li>
+                            <li>Ruedas para movilidad</li>
+                            <li>Mando a distancia</li>
+                            <li>Capacidad 12.000 BTU</li>
+                        </ul>
+                        <p class="product-price">Desde $499</p>
+                        <a href="#contact" class="btn">Consultar</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aire acondicionado de ventana" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Aire de Ventana</h3>
+                        <ul class="product-features">
+                            <li>Todo en una unidad</li>
+                            <li>Fácil mantenimiento</li>
+                            <li>Control remoto</li>
+                            <li>Capacidad 10.000 BTU</li>
+                        </ul>
+                        <p class="product-price">Desde $399</p>
+                        <a href="#contact" class="btn">Consultar</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sistema central de aire" class="card-img">
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Sistema Central</h3>
+                        <ul class="product-features">
+                            <li>Para toda la casa</li>
+                            <li>Control por zonas</li>
+                            <li>Filtración avanzada</li>
+                            <li>Eficiencia energética</li>
+                        </ul>
+                        <p class="product-price">Desde $2,999</p>
+                        <a href="#contact" class="btn">Consultar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-img-container">
+                <img src="https://images.unsplash.com/photo-1600566753201-ba5b27b650a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Técnicos de climatización" class="about-img">
+            </div>
+            <div class="about-content">
+                <h2>15 Años de Experiencia en Climatización</h2>
+                <p>En ClimaControl nos especializamos en proveer soluciones integrales de aire acondicionado para hogares y negocios. Nuestro equipo de técnicos certificados garantiza instalaciones profesionales y mantenimiento preventivo.</p>
+                <p>Somos distribuidores autorizados de las principales marcas del mercado, ofreciendo productos de calidad con garantía extendida.</p>
+                <p>Nuestra filosofía se basa en la transparencia, profesionalismo y atención personalizada a cada cliente.</p>
+                <a href="#contact" class="btn">Conoce más</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contacta a Nuestros Expertos</h3>
+                <div class="contact-detail">
+                    <h4>Dirección</h4>
+                    <p>Calle Climatización 123, Distrito Comercial<br>Ciudad, CP 12345</p>
+                </div>
+                <div class="contact-detail">
+                    <h4>Horario de Atención</h4>
+                    <p>Lunes a Viernes: 8:00 - 18:00<br>Sábados: 9:00 - 14:00<br>Emergencias 24/7</p>
+                </div>
+                <div class="contact-detail">
+                    <h4>Teléfonos</h4>
+                    <p>Ventas: (55) 1234-5678<br>Servicio Técnico: (55) 8765-4321<br>WhatsApp: (55) 9999-8888</p>
+                </div>
+                <div class="contact-detail">
+                    <h4>Email</h4>
+                    <p>info@climacontrol.com</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Solicita una Visita</h3>
+                <form>
+                    <input type="text" placeholder="Nombre completo" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="tel" placeholder="Teléfono" required>
+                    <select required>
+                        <option value="">Selecciona un servicio</option>
+                        <option>Instalación</option>
+                        <option>Mantenimiento</option>
+                        <option>Reparación</option>
+                        <option>Cotización</option>
+                        <option>Otro</option>
+                    </select>
+                    <textarea placeholder="Describe tus necesidades" required></textarea>
+                    <button type="submit" class="btn">Enviar Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo">Clima<span>Control</span></div>
+            <div class="footer-links">
+                <a href="#home">Inicio</a>
+                <a href="#services">Servicios</a>
+                <a href="#products">Productos</a>
+                <a href="#about">Nosotros</a>
+                <a href="#contact">Contacto</a>
+            </div>
+            <p class="copyright">© 2023 ClimaControl. Todos los derechos reservados. | Aviso de Privacidad</p>
+        </div>
+    </footer>
+</body>
+</html>

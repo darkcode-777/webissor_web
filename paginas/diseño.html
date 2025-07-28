@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creativa | Estudio de Diseño Gráfico</title>
+    <style>
+        :root {
+            --primary: #2a2d3e;
+            --secondary: #1e1f29;
+            --accent: #ff5e6c;
+            --light: #f8f9fa;
+            --text: #333344;
+            --text-light: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        /* Header */
+        .main-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        /* Navigation */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 2.5rem;
+        }
+        
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e05563;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            margin: 1.5rem auto;
+        }
+        
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .service-img-container {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .service-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-img {
+            transform: scale(1.05);
+        }
+        
+        .service-info {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-title {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .service-desc {
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            background-color: #f5f5f7;
+            padding: 6rem 0;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 350px;
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+        
+        .portfolio-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .portfolio-category {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-img-container {
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        /* Process Section */
+        .process {
+            background-color: var(--primary);
+            color: white;
+            padding: 6rem 0;
+        }
+        
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-10px);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 50px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-desc {
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+        
+        .contact-detail {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-detail h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+        }
+        
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        .main-footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-about p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .main-nav {
+                margin-top: 1.5rem;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .main-nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img-container {
+                height: 350px;
+                order: -1;
+            }
+            
+            .services-container,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">Creativa<span>.</span></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#portfolio">Portafolio</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#process">Proceso</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Diseño Gráfico que Transforma Marcas</h1>
+            <p>Creación de identidades visuales impactantes y soluciones de diseño estratégico para empresas innovadoras</p>
+            <a href="#contact" class="btn">Hablemos de tu proyecto</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="services-container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="service-card">
+                <div class="service-img-container">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Diseño de marca" class="service-img">
+                </div>
+                <div class="service-info">
+                    <h3 class="service-title">Diseño de Marca</h3>
+                    <p class="service-desc">Desarrollamos identidades visuales completas que comunican la esencia de tu negocio. Logotipos, paletas de color, tipografía y guías de estilo.</p>
+                    <a href="#contact" class="btn">Más información</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img-container">
+                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Diseño web" class="service-img">
+                </div>
+                <div class="service-info">
+                    <h3 class="service-title">Diseño Web & UI/UX</h3>
+                    <p class="service-desc">Interfaces digitales intuitivas y atractivas que mejoran la experiencia del usuario y aumentan las conversiones de tu negocio.</p>
+                    <a href="#contact" class="btn">Más información</a>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img-container">
+                    <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Diseño editorial" class="service-img">
+                </div>
+                <div class="service-info">
+                    <h3 class="service-title">Diseño Editorial</h3>
+                    <p class="service-desc">Desde folletos hasta libros, creamos piezas impresas con un diseño cuidado que comunica profesionalismo y calidad.</p>
+                    <a href="#contact" class="btn">Más información</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <h2 class="section-title">Nuestro Portafolio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 1" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Identidad Corporativa</h3>
+                    <p class="portfolio-category">Diseño de Marca</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 2" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Aplicación Móvil</h3>
+                    <p class="portfolio-category">UI/UX Design</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 3" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Campaña Publicitaria</h3>
+                    <p class="portfolio-category">Marketing Visual</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 4" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Packaging Premium</h3>
+                    <p class="portfolio-category">Diseño de Producto</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 5" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Sitio Web Corporativo</h3>
+                    <p class="portfolio-category">Diseño Web</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Proyecto 6" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Revista Digital</h3>
+                    <p class="portfolio-category">Diseño Editorial</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-img-container">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nuestro equipo" class="about-img">
+            </div>
+            <div class="about-content">
+                <h2>Creatividad con Propósito</h2>
+                <p>En Creativa combinamos diseño estratégico con ejecución impecable para ayudar a marcas ambiciosas a destacar en mercados competitivos.</p>
+                <p>Nuestro equipo multidisciplinario de diseñadores, ilustradores y estrategas trabaja de manera colaborativa para ofrecer soluciones visuales que no solo son hermosas, sino también efectivas.</p>
+                <p>Creemos en el poder del buen diseño para comunicar valores, inspirar acciones y construir conexiones emocionales con tu audiencia.</p>
+                <a href="#process" class="btn">Conoce nuestro proceso</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="process" id="process">
+        <div class="process-container">
+            <h2 class="section-title" style="color: white;">Nuestro Proceso Creativo</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Descubrimiento</h3>
+                    <p class="step-desc">Investigamos a fondo tu negocio, objetivos y audiencia para crear una base sólida para el diseño.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Conceptualización</h3>
+                    <p class="step-desc">Desarrollamos ideas creativas y estrategias visuales alineadas con tus necesidades.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Diseño</h3>
+                    <p class="step-desc">Transformamos conceptos en diseños impactantes con atención al detalle y calidad profesional.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Implementación</h3>
+                    <p class="step-desc">Preparamos todos los archivos y guías necesarias para aplicar el diseño en todos los medios.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Hablemos de tu proyecto</h3>
+                <div class="contact-detail">
+                    <h4>Estudio</h4>
+                    <p>Calle Diseño 456, Distrito Creativo<br>Ciudad, CP 12345</p>
+                </div>
+                <div class="contact-detail">
+                    <h4>Horario</h4>
+                    <p>Lunes a Viernes: 9:00 - 18:00<br>Citas previa coordinación</p>
+                </div>
+                <div class="contact-detail">
+                    <h4>Contacto</h4>
+                    <p>Tel: (55) 1234-5678<br>Email: hola@creativa.com<br>WhatsApp: (55) 9876-5432</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Envíanos un mensaje</h3>
+                <form>
+                    <input type="text" placeholder="Nombre completo" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="tel" placeholder="Teléfono">
+                    <select required>
+                        <option value="">Servicio de interés</option>
+                        <option>Diseño de Marca</option>
+                        <option>Diseño Web/UIUX</option>
+                        <option>Diseño Editorial</option>
+                        <option>Packaging</option>
+                        <option>Otro</option>
+                    </select>
+                    <textarea placeholder="Cuéntanos sobre tu proyecto" required></textarea>
+                    <button type="submit" class="btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">Creativa<span>.</span></div>
+                <p>Estudio de diseño gráfico especializado en creación de identidades visuales y soluciones de comunicación estratégica.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="#">Diseño de Marca</a></li>
+                    <li><a href="#">Diseño Web/UIUX</a></li>
+                    <li><a href="#">Diseño Editorial</a></li>
+                    <li><a href="#">Packaging</a></li>
+                    <li><a href="#">Ilustración</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#portfolio">Portafolio</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Términos y condiciones</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Política de cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2023 Creativa Estudio de Diseño. Todos los derechos reservados.
+        </div>
+    </footer>
+</body>
+</html>

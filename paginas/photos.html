@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOCUS | Ediciones Fotográficas Limitadas</title>
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #252525;
+            --accent: #6d4c41;
+            --light: #f5f5f5;
+            --text: #212121;
+            --text-light: #757575;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3 {
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        /* Header */
+        .main-header {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        /* Navigation */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 2rem;
+        }
+        
+        .main-nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light);
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--light);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #5d4037;
+            transform: translateY(-3px);
+        }
+        
+        /* Gallery Section */
+        .section-title {
+            text-align: center;
+            margin: 5rem 0 3rem;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--accent);
+            margin: 1rem auto;
+        }
+        
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .photography {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+        
+        .photography img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .photography:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: var(--light);
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .photography:hover .photo-info {
+            transform: translateY(0);
+        }
+        
+        .photo-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .photo-artist {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .photo-details {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .photo-edition {
+            font-size: 0.8rem;
+        }
+        
+        .photo-price {
+            font-size: 1rem;
+            color: var(--accent);
+        }
+        
+        /* Photographers Section */
+        .photographers {
+            background-color: #f0f0f0;
+            padding: 5rem 0;
+        }
+        
+        .photographers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .photographer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .photographer-card {
+            background: white;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .photographer-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .photographer-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            display: block;
+            border: 3px solid var(--accent);
+        }
+        
+        .photographer-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .photographer-specialty {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        /* About Section */
+        .about {
+            background: var(--primary);
+            color: var(--light);
+            padding: 5rem 0;
+            margin-top: 5rem;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        /* Footer */
+        .main-footer {
+            background: var(--secondary);
+            color: var(--light);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .main-nav {
+                margin-top: 1rem;
+            }
+            
+            .main-nav li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                height: 300px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">FOCUS<span>.</span></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#gallery">Ediciones</a></li>
+                    <li><a href="#photographers">Fotógrafos</a></li>
+                    <li><a href="#about">Sobre Nosotros</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Ediciones Fotográficas Limitadas</h1>
+            <p>Descubra obras exclusivas de fotógrafos contemporáneos en ediciones numeradas y firmadas.</p>
+            <a href="#gallery" class="btn">Explorar Colección</a>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title">Ediciones Destacadas</h2>
+        <div class="gallery-container">
+            <div class="photography">
+                <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fotografía urbana">
+                <div class="photo-info">
+                    <h3 class="photo-title">Metrópolis Nocturna</h3>
+                    <p class="photo-artist">Carlos Méndez, 2022</p>
+                    <div class="photo-details">
+                        <span class="photo-edition">Edición 5/25</span>
+                        <span class="photo-price">€2,800</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="photography">
+                <img src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Retrato fotográfico">
+                <div class="photo-info">
+                    <h3 class="photo-title">Mirada Profunda</h3>
+                    <p class="photo-artist">Ana Torres, 2023</p>
+                    <div class="photo-details">
+                        <span class="photo-edition">Edición 3/15</span>
+                        <span class="photo-price">€3,500</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="photography">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Paisaje natural">
+                <div class="photo-info">
+                    <h3 class="photo-title">Horizontes Infinitos</h3>
+                    <p class="photo-artist">Samuel Chen, 2021</p>
+                    <div class="photo-details">
+                        <span class="photo-edition">Edición 8/30</span>
+                        <span class="photo-price">€2,200</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="photography">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fotografía de naturaleza">
+                <div class="photo-info">
+                    <h3 class="photo-title">Niebla Matutina</h3>
+                    <p class="photo-artist">Elena Roth, 2022</p>
+                    <div class="photo-details">
+                        <span class="photo-edition">Edición 2/10</span>
+                        <span class="photo-price">€4,800</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="photography">
+                <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fotografía abstracta">
+                <div class="photo-info">
+                    <h3 class="photo-title">Texturas Urbanas</h3>
+                    <p class="photo-artist">David Kim, 2023</p>
+                    <div class="photo-details">
+                        <span class="photo-edition">Edición 1/20</span>
+                        <span class="photo-price">€3,200</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="photography">
+                <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fotografía de paisaje">
+                <div class="photo-info">
+                    <h3 class="photo-title">Reflejos del Amanecer</h3>
+                    <p class="photo-artist">Marina Velázquez, 2020</p>
+                    <div class="photo-details">
+                        <span class="photo-edition">Edición 4/25</span>
+                        <span class="photo-price">€2,600</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="photographers" id="photographers">
+        <div class="photographers-container">
+            <h2 class="section-title">Nuestros Fotógrafos</h2>
+            <div class="photographer-grid">
+                <div class="photographer-card">
+                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Carlos Méndez" class="photographer-img">
+                    <h3 class="photographer-name">Carlos Méndez</h3>
+                    <p class="photographer-specialty">Fotografía urbana</p>
+                    <p>Explora la relación entre arquitectura y espacio urbano en sus series limitadas.</p>
+                    <a href="#" class="btn">Ver ediciones</a>
+                </div>
+                
+                <div class="photographer-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Ana Torres" class="photographer-img">
+                    <h3 class="photographer-name">Ana Torres</h3>
+                    <p class="photographer-specialty">Retrato contemporáneo</p>
+                    <p>Captura la esencia humana en ediciones numeradas de gran valor artístico.</p>
+                    <a href="#" class="btn">Ver ediciones</a>
+                </div>
+                
+                <div class="photographer-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Samuel Chen" class="photographer-img">
+                    <h3 class="photographer-name">Samuel Chen</h3>
+                    <p class="photographer-specialty">Paisajes naturales</p>
+                    <p>Fusiona técnicas tradicionales con visión contemporánea en sus ediciones.</p>
+                    <a href="#" class="btn">Ver ediciones</a>
+                </div>
+                
+                <div class="photographer-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Elena Roth" class="photographer-img">
+                    <h3 class="photographer-name">Elena Roth</h3>
+                    <p class="photographer-specialty">Fotografía conceptual</p>
+                    <p>Crea narrativas visuales en series limitadas muy cotizadas.</p>
+                    <a href="#" class="btn">Ver ediciones</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-container">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Taller de ediciones" class="about-img">
+            <div class="about-content">
+                <h2>Sobre FOCUS Ediciones</h2>
+                <p>Fundada en 2015, FOCUS se especializa en ediciones fotográficas limitadas y firmadas por los artistas. Trabajamos directamente con fotógrafos contemporáneos para producir series exclusivas de alto valor artístico.</p>
+                <p>Cada edición es cuidadosamente producida con los más altos estándares de calidad, utilizando papeles de archivo y técnicas de impresión que garantizan la permanencia de la imagen.</p>
+                <p>Nuestro objetivo es promover la fotografía como arte coleccionable, conectando a fotógrafos con coleccionistas y amantes del arte.</p>
+                <a href="#contact" class="btn">Visítanos</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="about-container" style="background: var(--light); padding: 3rem; max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center;">
+                <h2 class="section-title">Contacto</h2>
+                <p style="margin-bottom: 2rem;">Calle de la Imagen, 15 · 28010 Madrid</p>
+                <p style="margin-bottom: 2rem;">info@focusediciones.com · +34 91 765 43 21</p>
+                <p>Horario: Martes a Viernes 11:00-19:00 · Sábados 11:00-15:00</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo">FOCUS<span>.</span></div>
+            <div class="footer-links">
+                <a href="#home">Inicio</a>
+                <a href="#gallery">Ediciones</a>
+                <a href="#photographers">Fotógrafos</a>
+                <a href="#about">Sobre Nosotros</a>
+                <a href="#contact">Contacto</a>
+            </div>
+            <p class="copyright">© 2023 FOCUS Ediciones Fotográficas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

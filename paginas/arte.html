@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | Galería de Arte Contemporáneo</title>
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #333;
+            --accent: #8b5a2b;
+            --light: #f8f8f8;
+            --text: #333;
+            --text-light: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3 {
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        
+        /* Header */
+        .main-header {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        /* Navigation */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .main-nav li {
+            margin-left: 2rem;
+        }
+        
+        .main-nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+        
+        .main-nav a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light);
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--light);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #6d4722;
+            transform: translateY(-3px);
+        }
+        
+        /* Gallery Section */
+        .section-title {
+            text-align: center;
+            margin: 5rem 0 3rem;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--accent);
+            margin: 1rem auto;
+        }
+        
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .artwork {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+        
+        .artwork img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .artwork:hover img {
+            transform: scale(1.05);
+        }
+        
+        .artwork-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: var(--light);
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .artwork:hover .artwork-info {
+            transform: translateY(0);
+        }
+        
+        .artwork-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .artwork-artist {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .artwork-price {
+            font-size: 1rem;
+            color: var(--accent);
+        }
+        
+        /* Artists Section */
+        .artists {
+            background-color: #f0f0f0;
+            padding: 5rem 0;
+        }
+        
+        .artists-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .artist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .artist-card {
+            background: white;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .artist-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .artist-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            display: block;
+            border: 3px solid var(--accent);
+        }
+        
+        .artist-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .artist-country {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .artist-bio {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Exhibitions Section */
+        .exhibitions {
+            padding: 5rem 0;
+        }
+        
+        .exhibitions-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .exhibition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .exhibition-card {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .exhibition-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .exhibition-info {
+            padding: 1.5rem;
+        }
+        
+        .exhibition-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .exhibition-date {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .exhibition-desc {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* About Section */
+        .about {
+            background: var(--primary);
+            color: var(--light);
+            padding: 5rem 0;
+            margin-top: 5rem;
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: #f0f0f0;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-detail {
+            margin-bottom: 1rem;
+        }
+        
+        .contact-detail h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        .main-footer {
+            background: var(--secondary);
+            color: var(--light);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            margin: 0 1rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .main-nav {
+                margin-top: 1rem;
+            }
+            
+            .main-nav li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                height: 300px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">LUMINA<span>.</span></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#gallery">Galería</a></li>
+                    <li><a href="#artists">Artistas</a></li>
+                    <li><a href="#exhibitions">Exposiciones</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Arte Contemporáneo & Exposiciones Curatoriales</h1>
+            <p>Descubra obras excepcionales de artistas emergentes y establecidos en nuestra galería del centro de Madrid.</p>
+            <a href="#gallery" class="btn">Explorar Colección</a>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title">Obras Destacadas</h2>
+        <div class="gallery-container">
+            <div class="artwork">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Pintura abstracta">
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Efímero No. 12</h3>
+                    <p class="artwork-artist">Clara Méndez, 2023</p>
+                    <p class="artwork-price">€8,500</p>
+                </div>
+            </div>
+            
+            <div class="artwork">
+                <img src="https://images.unsplash.com/photo-1578301978018-3005750f10bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Pintura figurativa">
+                <div class="artwork">
+    <img src="https://images.unsplash.com/photo-1578301978176-18d60c3d2619?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Pintura figurativa">
+    <div class="artwork-info">
+        <h3 class="artwork-title">Retrato en Azul</h3>
+        <p class="artwork-artist">Alejandro Torres, 2022</p>
+        <p class="artwork-price">€6,200</p>
+    </div>
+</div>
+            
+            <div class="artwork">
+                <img src="https://images.unsplash.com/photo-1578926375605-eaf7559b1458?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Pintura moderna">
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Composición Urbana</h3>
+                    <p class="artwork-artist">Sofía Chen, 2023</p>
+                    <p class="artwork-price">€9,800</p>
+                </div>
+            </div>
+            
+            <div class="artwork">
+                <img src="https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Pintura abstracta">
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Horizontes Perdidos</h3>
+                    <p class="artwork-artist">Marco Velázquez, 2021</p>
+                    <p class="artwork-price">€7,500</p>
+                </div>
+            </div>
+            
+            <div class="artwork">
+                <img src="https://images.unsplash.com/photo-1579887820113-d75c6259b1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Pintura contemporánea">
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Silencio Matutino</h3>
+                    <p class="artwork-artist">Elena Roth, 2022</p>
+                    <p class="artwork-price">€5,900</p>
+                </div>
+            </div>
+            
+            <div class="artwork">
+                <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad065b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Pintura abstracta">
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Estructuras III</h3>
+                    <p class="artwork-artist">David Kim, 2023</p>
+                    <p class="artwork-price">€10,200</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="artists" id="artists">
+        <div class="artists-container">
+            <h2 class="section-title">Nuestros Artistas</h2>
+            <div class="artist-grid">
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Clara Méndez" class="artist-img">
+                    <h3 class="artist-name">Clara Méndez</h3>
+                    <p class="artist-country">España, 1985</p>
+                    <p class="artist-bio">Explora la relación entre el espacio y la memoria a través de composiciones abstractas en gran formato.</p>
+                    <a href="#" class="btn">Ver obras</a>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Alejandro Torres" class="artist-img">
+                    <h3 class="artist-name">Alejandro Torres</h3>
+                    <p class="artist-country">México, 1978</p>
+                    <p class="artist-bio">Figurativismo contemporáneo con influencias del muralismo mexicano y el realismo mágico.</p>
+                    <a href="#" class="btn">Ver obras</a>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Sofía Chen" class="artist-img">
+                    <h3 class="artist-name">Sofía Chen</h3>
+                    <p class="artist-country">China/España, 1990</p>
+                    <p class="artist-bio">Fusión de técnicas orientales y occidentales en composiciones urbanas vibrantes.</p>
+                    <a href="#" class="btn">Ver obras</a>
+                </div>
+                
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Marco Velázquez" class="artist-img">
+                    <h3 class="artist-name">Marco Velázquez</h3>
+                    <p class="artist-country">Argentina, 1982</p>
+                    <p class="artist-bio">Abstracción lírica con énfasis en el gesto y la exploración cromática.</p>
+                    <a href="#" class="btn">Ver obras</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="exhibitions" id="exhibitions">
+        <div class="exhibitions-container">
+            <h2 class="section-title">Próximas Exposiciones</h2>
+            <div class="exhibition-grid">
+                <div class="exhibition-card">
+                    <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Límites de lo Real" class="exhibition-img">
+                    <div class="exhibition-info">
+                        <h3 class="exhibition-title">Límites de lo Real</h3>
+                        <p class="exhibition-date">15 Septiembre - 30 Octubre 2023</p>
+                        <p class="exhibition-desc">Exposición colectiva que cuestiona los límites entre figuración y abstracción en el arte contemporáneo.</p>
+                        <a href="#" class="btn">Más información</a>
+                    </div>
+                </div>
+                
+                <div class="exhibition-card">
+                    <img src="https://images.unsplash.com/photo-1553531889-56cc480ac5cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Retrospectiva Marco Velázquez" class="exhibition-img">
+                    <div class="exhibition-info">
+                        <h3 class="exhibition-title">Retrospectiva Marco Velázquez</h3>
+                        <p class="exhibition-date">5 Noviembre - 20 Diciembre 2023</p>
+                        <p class="exhibition-desc">Primera retrospectiva en España del destacado artista argentino, con obras desde 2005 hasta la actualidad.</p>
+                        <a href="#" class="btn">Más información</a>
+                    </div>
+                </div>
+                
+                <div class="exhibition-card">
+                    <img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nuevas Voces" class="exhibition-img">
+                    <div class="exhibition-info">
+                        <h3 class="exhibition-title">Nuevas Voces</h3>
+                        <p class="exhibition-date">10 Enero - 25 Febrero 2024</p>
+                        <p class="exhibition-desc">Descubra a los artistas emergentes más prometedores seleccionados por nuestro equipo curatorial.</p>
+                        <a href="#" class="btn">Más información</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-container">
+            <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Interior de la galería" class="about-img">
+            <div class="about-content">
+                <h2>Sobre Nuestra Galería</h2>
+                <p>Fundada en 2010, LUMINA se ha establecido como una de las galerías líderes en arte contemporáneo en España. Nos dedicamos a promover artistas emergentes y de media carrera cuyas obras desafían convenciones y exploran nuevos territorios creativos.</p>
+                <p>Nuestro espacio de 800m² en el corazón de Madrid alberga exposiciones rotativas cada seis semanas, además de eventos especiales, charlas con artistas y programas educativos.</p>
+                <p>El equipo curatorial de LUMINA trabaja directamente con los artistas para desarrollar proyectos expositivos coherentes con su práctica artística.</p>
+                <a href="#contact" class="btn">Programar Visita</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contacto</h3>
+                <div class="contact-detail">
+                    <h4>Dirección</h4>
+                    <p>Calle de la Luz, 42<br>28004 Madrid, España</p>
+                </div>
+                <div class="contact-detail">
+                    <h4>Horario</h4>
+                    <p>Martes a Sábado: 11:00 - 20:00<br>Domingo: 11:00 - 15:00<br>Lunes: Cerrado</p>
+                </div>
+                <div class="contact-detail">
+                    <h4>Teléfono</h4>
+                    <p>+34 91 123 45 67</p>
+                </div>
+                <div class="contact-detail">
+                    <h4>Email</h4>
+                    <p>info@galerialumina.com</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Envíanos un mensaje</h3>
+                <form>
+                    <input type="text" placeholder="Nombre" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="text" placeholder="Asunto">
+                    <textarea placeholder="Mensaje" required></textarea>
+                    <button type="submit" class="btn">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo">LUMINA<span>.</span></div>
+            <div class="footer-links">
+                <a href="#home">Inicio</a>
+                <a href="#gallery">Galería</a>
+                <a href="#artists">Artistas</a>
+                <a href="#exhibitions">Exposiciones</a>
+                <a href="#contact">Contacto</a>
+            </div>
+            <p class="copyright">© 2023 LUMINA Galería de Arte. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
